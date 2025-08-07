@@ -406,28 +406,6 @@
         margin-top: 15px !important;
       }
     }
-    /* Countdown Overlay CSS (moved here) */
-    #countdown-overlay {
-      position: fixed;
-      z-index: 9999;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.95);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-    }
-    .countdown-outer {
-      background: rgba(0,0,0,0.7);
-      border-radius: 20px;
-      padding: 30px 15px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.7), 0 0 20px rgba(255,105,180,0.2);
-      border: 1px solid rgba(0,0,0,0.8);
-      border-top: 1px solid rgba(255,105,180,0.3);
-      text-align: center;
-      max-width: 95vw;
-      width: 350px;
-    }
   </style>
 </head>
 <body>
@@ -438,14 +416,30 @@
 
       <!-- Step 1 -->
       <div class="step active" id="step1">
-        <div class="emoji heart-beat">❤️</div>
-        <h1 class="text-5xl md:text-6xl font-bold mb-8 text-gradient">Assalamu Alaikum Ammu</h1>
-        <p class="text-2xl mb-6" id="intro-text"></p>
-        <div class="special-message">
-          "In the name of Allah, the Most Gracious, the Most Merciful"
+        <div class="emoji text-3xl">⏳</div>
+        <h2 class="text-2xl font-bold mb-4 text-gradient">Locked Until 16 Aug 2025</h2>
+        <div class="countdown-container mb-4">
+          <div class="countdown-title text-lg mb-3">Time Until Your Special Day:</div>
+          <div class="countdown-grid">
+            <div class="countdown-item">
+              <div class="countdown-number" id="days">00</div>
+              <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="hours">00</div>
+              <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="minutes">00</div>
+              <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+              <div class="countdown-number" id="seconds">00</div>
+              <div class="countdown-label">Seconds</div>
+            </div>
+          </div>
         </div>
-        <p class="text-xl mb-8">I've created something very special just for you, my darling Ammu...</p>
-        <button class="btn" id="start-btn">Begin Our Journey ❤️</button>
+        <p class="text-lg mb-4">Come back on your birthday for a special surprise from your beloved ❤️</p>
       </div>
 
       <!-- Step 2 -->
@@ -837,34 +831,6 @@ if (checkBirthday()) {
     });
   });
 }
-
-function showCountdownOverlay() {
-  const overlay = document.getElementById('countdown-overlay');
-  const app = document.getElementById('app');
-  const birthday = new Date('2025-08-16T00:00:00');
-  function updateOverlayCountdown() {
-    const now = new Date();
-    const timeLeft = birthday - now;
-    if (timeLeft <= 0) {
-      overlay.style.display = 'none';
-      app.style.display = '';
-      return;
-    }
-    overlay.style.display = 'flex';
-    app.style.display = 'none';
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-    document.getElementById('overlay-days').textContent = days.toString().padStart(2, '0');
-    document.getElementById('overlay-hours').textContent = hours.toString().padStart(2, '0');
-    document.getElementById('overlay-minutes').textContent = minutes.toString().padStart(2, '0');
-    document.getElementById('overlay-seconds').textContent = seconds.toString().padStart(2, '0');
-  }
-  updateOverlayCountdown();
-  setInterval(updateOverlayCountdown, 1000);
-}
-showCountdownOverlay();
 </script>
 </body>
-</html>
+</html> 
